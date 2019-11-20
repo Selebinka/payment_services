@@ -1,0 +1,31 @@
+
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<form  action="{{ url_for('handling') }}" method="POST">
+    <div class="form-group">
+        <label for="inputsumm">Сумма</label>
+        <div class="form-inline">
+            <input type="text" class="form-control" placeholder="Сумма" name="summ" value="{{ request.form.get('summ', '') }}">
+            <select class="custom-select ml-2" id="inlineFormCustomSelectPref" name="currency" value="{{ request.form.get('currency', '') }}">
+                <option selected>Валюта</option>
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+                <option value="RUB">RUB</option> 
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="discription">Описание товара</label>
+        <textarea class="form-control" style="max-width: 88%;" rows="3" name="discription" value="{{ request.form.get('discription', '') }}"></textarea>
+    </div>   
+    
+    <button type="submit" class="btn btn-success" style="display: block; margin-left: 63%;">Оплатить</button>
+
+  </form>
+
+{% endblock %}
+
+
