@@ -1,13 +1,19 @@
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
 from flask import render_template, request, redirect
 import random
+from datetime import datetime
 from sing_gen import sign_gen
 from handling_req import handlingBill ,handlingInvoice
-from config import SHOP_ID, PAYWAY
+from config import SHOP_ID, PAYWAY, Config
+from models import *
 
 
 app = Flask(__name__)
+app.config.from_object(Config)
+db = SQLAlchemy(app)
+
 
 @app.route('/', methods=['POST'])
 def handling():
@@ -16,13 +22,22 @@ def handling():
     currency = request.form['currency']
     discription = request.form['discription']
     shop_order_id = str(random.randint(1,99999))
+    send_time = datetime.now().strftime('%H:%M:%S')
+    
+    p = Payments()
+    p.currency = currency
+    p.amount = amount
+    p.discription = discription
+    p.send_time = send_time
+    p.shop_order_id = shop_order_id
 
-    # payment_handlers = {
-    #         "USD": usd_payment,
-    #         "EUR": eur_payment,
-    #         "RUB": rur_payment
-    #     }
-
+    db.session.add(p)
+    try:
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        eprint(str(e))
+    
     if currency == 'EUR':
         currency = '978'
         keys_sorted = [amount, currency, SHOP_ID, shop_order_id]
@@ -34,6 +49,7 @@ def handling():
                                 sign=sign,
                                 shop_order_id=shop_order_id
                             )
+
     if currency == 'USD':
         currency = payer_currency = '840'
         keys_sorted = [currency, amount, payer_currency, SHOP_ID, shop_order_id]
@@ -43,7 +59,7 @@ def handling():
                 'shop_currency': currency, 
                 'shop_id': SHOP_ID, 
                 'shop_order_id': shop_order_id,
-                'sign': signg
+                'sign': sign
             }
         res_url = handlingBill(data)
         return redirect(res_url)
