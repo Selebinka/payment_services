@@ -43,7 +43,7 @@ def handling():
                 'shop_currency': currency, 
                 'shop_id': SHOP_ID, 
                 'shop_order_id': shop_order_id,
-                'sign': sign
+                'sign': signg
             }
         res_url = handlingBill(data)
         return redirect(res_url)
