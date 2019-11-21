@@ -1,6 +1,6 @@
 from flask import render_template, Response
 import requests
-from main import app
+import logging
 
 
 def handlingBill(data):
@@ -14,11 +14,11 @@ def handlingBill(data):
         else:
             message = res.json()['message']
             error_code = res.json()['error_code']
-            app.logger.warning('message: {}, error_code: {}'.format(message, error_code))
+            logging.warning('Services response (message: {}, error_code: {})'.format(message, error_code))
             return Response('error_code: ', error_code, '\nmessage: ', message)
             
     except Exception as error:
-        app.logger.exception('{}'.format(error))
+        logging.exception('{}'.format(error))
         return Response(505, 'Internal Server Error')
     
 def handlingInvoice(data):
@@ -45,9 +45,9 @@ def handlingInvoice(data):
         else:
             message = res.json()['message']
             error_code = res.json()['error_code']
-            app.logger.warning('message: {}, error_code: {}'.format(message, error_code))
+            logging.warning('Services response (message: {}, error_code: {})'.format(message, error_code))
             return Response('error_code: ', error_code, '\nmessage: ', message)
 
     except Exception as error:
-        app.logger.exception('{}'.format(error))
+        logging.exception('{}'.format(error))
         return Response(505, 'Internal Server Error')

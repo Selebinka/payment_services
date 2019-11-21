@@ -8,15 +8,15 @@ from logging_config import logging_config
 import random
 from datetime import datetime
 from sing_gen import sign_gen
-from handling_req import handlingBill ,handlingInvoice
-from config import SHOP_ID, PAYWAY, DevelopmentConfig, ProductionConfig
+from handling_req import handlingBill, handlingInvoice
+from config import SHOP_ID, PAYWAY, Config
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 from models import *
 
 
 app = Flask(__name__)
-app.config.from_object(ProductionConfig)
+app.config.from_object(Config)
 
 db = SQLAlchemy(app)
 migrate = Migrate(app,  db)
