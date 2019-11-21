@@ -15,7 +15,7 @@ logging_config = {
         },
         "info_file_handler": {
             "class": "logging.handlers.RotatingFileHandler",
-            "level": "WARNING",
+            "level": "INFO",
             "formatter": "simple",
             "filename": "logs/log.txt",
             "maxBytes": 10485760,

@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<form  action="{{ url_for('handling') }}" method="POST">
+<form action="{{ url_for('handling') }}" method="POST">
     <div class="form-group">
         <label for="inputsumm">Сумма</label>
         <div class="form-inline">
@@ -19,10 +19,10 @@
     </div>
     <div class="form-group">
         <label for="discription">Описание товара</label>
-        <textarea class="form-control" style="max-width: 88%;" rows="3" required name="discription" value="{{ request.form.get('discription', '') }}"></textarea>
+        <textarea class="form-control" style="max-width: 77%;" rows="3" required name="discription" value="{{ request.form.get('discription', '') }}"></textarea>
     </div>   
     
-    <button type="submit" class="btn btn-success" style="display: block; margin-left: 63%;">Оплатить</button>
+    <button type="submit" class="btn btn-success" style="display: block; margin-left: 55%;">Оплатить</button>
 
   </form>
 

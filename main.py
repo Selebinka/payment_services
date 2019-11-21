@@ -2,13 +2,13 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 from flask import render_template, request, redirect, Response
-import logging.config
 from logging_config import logging_config
+import logging.config
 
 import random
 from datetime import datetime
-from sing_gen import sign_gen
-from handling_req import handlingBill, handlingInvoice
+from modules.handling_req import handlingBill, handlingInvoice
+from modules.sign_gen import sign_gen
 from config import SHOP_ID, PAYWAY, Config
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
