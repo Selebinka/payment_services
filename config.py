@@ -17,4 +17,4 @@ class Config(object):
             'sqlite:///' + os.path.join(basedir, 'payments.db')
     
     SQLALCHEMY_TRACK_MODIFICATIONS = False 
-    DEBUG = True
+    DEBUG = False
