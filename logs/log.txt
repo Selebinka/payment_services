@@ -1,0 +1,4 @@
+2019-11-22 14:39:41,616 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2019-11-22 14:39:49,403 - werkzeug - INFO - 127.0.0.1 - - [22/Nov/2019 14:39:49] "POST / HTTP/1.1" 302 -
+2019-11-22 14:39:50,596 - werkzeug - INFO - 127.0.0.1 - - [22/Nov/2019 14:39:50] "GET / HTTP/1.1" 200 -
+2019-11-22 14:43:13,108 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
